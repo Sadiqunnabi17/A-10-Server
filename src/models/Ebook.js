@@ -1,15 +1,17 @@
-// models/Ebook.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const ebookSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  description: String,
-  content: String,            // full content, shown only after purchase
-  price: { type: Number, required: true },
-  genre: String,
-  coverImage: String,         // imgBB URL
-  writer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  isPublished: { type: Boolean, default: false },
-}, { timestamps: true });
+const ebookSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    description: { type: String },
+    content: { type: String },
+    price: { type: Number, required: true },
+    genre: { type: String },
+    coverImage: { type: String },
+    writer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    isPublished: { type: Boolean, default: false },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Ebook', ebookSchema);
+module.exports = mongoose.model("Ebook", ebookSchema);
