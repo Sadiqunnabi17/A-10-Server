@@ -15,7 +15,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", require("./src/routes/auth.routes"));
 app.use("/api/ebooks", require("./src/routes/ebook.routes"));
-// app.use("/api/users", require("./src/routes/user.routes"));
+app.use("/api/users", require("./src/routes/user.routes"));
 // app.use("/api/admin", require("./src/routes/admin.routes"));
 
 app.get("/", (req, res) => {
