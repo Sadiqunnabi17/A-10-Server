@@ -23,6 +23,7 @@ app.use(cors({
   origin: function(origin, callback) {
     const allowed = [
       "http://localhost:3000",
+      "https://a-10-client.vercel.app"
     ];
     // Allow all vercel deployments
     if (!origin || allowed.includes(origin) || origin.endsWith(".vercel.app")) {
