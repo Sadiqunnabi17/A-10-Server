@@ -1,1 +1,1 @@
-{"last_found_secrets": [{"name": "MongoDB URI - E:\\ProgrammingHero\\Assignment\\assignmen10\\backend\\A-10-Server\\src\\config\\.env", "match": "cc6b32cbdf926706dff0e5cfa137dffc855734d39d05db16b04d0805feb0e8ec"}]}
+{"last_found_secrets": [{"match": "e6d517aef5836f0d031a4f8a750383d179847d1b0f879407e77ad3883f28b280", "name": "Generic Password - E:\\ProgrammingHero\\Assignment\\assignmen10\\backend\\A-10-Server\\src\\seed.js"}]}

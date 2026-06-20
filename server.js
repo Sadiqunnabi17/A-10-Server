@@ -9,7 +9,13 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://a-10-client-4c3pasl3r-sadiqunnabis-projects.vercel.app"
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 // Routes
@@ -17,6 +23,7 @@ app.use("/api/auth", require("./src/routes/auth.routes"));
 app.use("/api/ebooks", require("./src/routes/ebook.routes"));
 app.use("/api/users", require("./src/routes/user.routes"));
 app.use("/api/admin", require("./src/routes/admin.routes"));
+app.use("/api/payment", require("./src/routes/payment.routes"));
 
 app.get("/", (req, res) => {
   res.send("Fable API is running");

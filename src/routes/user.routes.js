@@ -120,4 +120,20 @@ router.get("/sales", verifyToken, async (req, res) => {
   }
 });
 
+// UPDATE ROLE
+router.patch("/role", verifyToken, async (req, res) => {
+  try {
+    const { role } = req.body;
+    const updated = await User.findByIdAndUpdate(
+      req.user.id,
+      { role },
+      { new: true }
+    ).select("-password");
+    res.status(200).json(updated);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+
+});
+
 module.exports = router;
