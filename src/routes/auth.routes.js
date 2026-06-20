@@ -95,15 +95,18 @@ router.post("/google", async (req, res) => {
 
     // Check if user exists
     let user = await User.findOne({ email });
+    let isNewUser = false;
 
     if (!user) {
       // Create new user if doesn't exist
+      isNewUser = true;
       user = await User.create({
         name,
         email,
         photo,
         role: "user",
       });
+      
     }
 
     // Generate token
@@ -115,6 +118,7 @@ router.post("/google", async (req, res) => {
 
     res.status(200).json({
       token,
+      isNewUser,
       user: {
         id: user._id,
         name: user.name,
