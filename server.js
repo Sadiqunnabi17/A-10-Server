@@ -9,11 +9,28 @@ const app = express();
 connectDB();
 
 // Middleware
+// app.use(cors({
+//   origin: [
+//     "http://localhost:3000",
+//     "https://a-10-client-4c3pasl3r-sadiqunnabis-projects.vercel.app",
+//     "https://a-10-client-q9pr65wh6-sadiqunnabis-projects.vercel.app"
+//   ],
+//   credentials: true
+// // }));
+// app.use(express.json());
+
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://a-10-client-4c3pasl3r-sadiqunnabis-projects.vercel.app"
-  ],
+  origin: function(origin, callback) {
+    const allowed = [
+      "http://localhost:3000",
+    ];
+    // Allow all vercel deployments
+    if (!origin || allowed.includes(origin) || origin.endsWith(".vercel.app")) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
