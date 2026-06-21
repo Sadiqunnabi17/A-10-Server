@@ -13,6 +13,16 @@ router.get("/", async (req, res) => {
 
     // Search by title or writer name
     if (search) {
+      const writers = await require("../models/User").find({
+        name: { $regex: search, $options: "i" }
+      }).select("_id");
+
+      const writerIds = writers.map(w => w._id);
+      query.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { writer: { $in: writerIds } },
+      ];
+    }
       query.title = { $regex: search, $options: "i" };
     }
 
