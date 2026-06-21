@@ -23,9 +23,7 @@ router.get("/", async (req, res) => {
         { writer: { $in: writerIds } },
       ];
     }
-      query.title = { $regex: search, $options: "i" };
-    }
-
+      
     // Filter by genre
     if (genre) {
       query.genre = genre;
