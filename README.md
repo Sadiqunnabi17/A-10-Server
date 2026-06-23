@@ -3,8 +3,7 @@
 ## Project Purpose
 Fable is a digital platform that connects ebook lovers with talented writers. Users can browse, discover, and purchase original ebooks while writers can upload and manage their creations.
 
-## Live URL
-[https://your-vercel-url.vercel.app](https://your-vercel-url.vercel.app)
+## Live URL: https://a-10-client.vercel.app
 
 ## Admin Credentials
 - Email: admin@fable.com
