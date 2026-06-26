@@ -46,7 +46,11 @@ router.get("/purchases", verifyToken, async (req, res) => {
       buyer: req.user.id,
       type: "purchase",
     })
-      .populate("ebook", "title coverImage price")
+      .populate({
+        path: "ebook",
+        select: "title coverImage price writer",
+        populate: { path: "writer", select: "name" }
+      })
       .sort({ createdAt: -1 });
 
     res.status(200).json(transactions);
@@ -63,7 +67,7 @@ router.get("/purchased-ebooks", verifyToken, async (req, res) => {
       type: "purchase",
     }).populate({
       path: "ebook",
-      populate: { path: "writer", select: "name photo" },
+      populate: { path: "writer", select: "name" },
     });
 
     const ebooks = transactions.map((t) => t.ebook);
@@ -78,7 +82,7 @@ router.get("/bookmarks", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).populate({
       path: "bookmarks",
-      populate: { path: "writer", select: "name photo" },
+      populate: { path: "writer", select: "name" },
     });
 
     res.status(200).json(user.bookmarks);
