@@ -88,17 +88,7 @@ router.get("/analytics", verifyAdmin, async (req, res) => {
 
     const revenueData = await Transaction.aggregate([
       { $match: { type: "purchase" } },
-      {
-        $group: {
-          _id: {
-            month: { $month: "$createdAt" },
-            year: { $year: "$createdAt" }
-          },
-          total: { $sum: "$amount" },
-          count: { $sum: 1 },
-        },
-      },
-      { $sort: { "_id.year": 1, "_id.month": 1 } },
+      { $group: { _id: null, totalRevenue: { $sum: "$amount" } } },
     ]);
 
     const totalRevenue = revenueData[0]?.totalRevenue || 0;
@@ -108,12 +98,15 @@ router.get("/analytics", verifyAdmin, async (req, res) => {
       { $match: { type: "purchase" } },
       {
         $group: {
-          _id: { $month: "$createdAt" },
+          _id: { 
+            month: {$month: "$createdAt" },
+            year: {$year: "$createdAt" }
+          },
           total: { $sum: "$amount" },
           count: { $sum: 1 },
         },
       },
-      { $sort: { _id: 1 } },
+      { $sort: { "_id.year": 1, "_id.month": 1 } },
     ]);
 
     // Ebooks by genre
