@@ -70,7 +70,11 @@ router.get("/transactions", verifyAdmin, async (req, res) => {
   try {
     const transactions = await Transaction.find()
       .populate("buyer", "name email")
-      .populate("ebook", "title price")
+      .populate({
+        path: "ebook",
+        select: "title price writer",
+        populate: { path: "writer", select: "name" },
+      })
       .sort({ createdAt: -1 });
 
     res.status(200).json(transactions);
