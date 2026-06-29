@@ -43,6 +43,7 @@ router.post("/register", validateRegister, async (req, res) => {
         email: user.email,
         role: user.role,
         photo: user.photo,
+        createdAt: user.createdAt,
       },
     });
   } catch (error) {
@@ -82,6 +83,7 @@ router.post("/login", validateLogin, async (req, res) => {
         email: user.email,
         role: user.role,
         photo: user.photo,
+        createdAt: user.createdAt,
       },
     });
   } catch (error) {
@@ -126,6 +128,7 @@ router.post("/google", async (req, res) => {
         email: user.email,
         role: user.role,
         photo: user.photo,
+        createdAt: user.createdAt,
       },
     });
   } catch (error) {
